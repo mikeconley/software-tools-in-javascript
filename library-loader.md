@@ -1,6 +1,6 @@
 # Library Loader
 
-Show how to implement `require` for loading libraries.
+Show how to implement `require` for loading libraries using [this blog post](http://fredkschott.com/post/2014/06/require-and-the-module-system/) as a starting point.
 
 This shows:
 
