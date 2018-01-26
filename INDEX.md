@@ -12,3 +12,4 @@
 -   [Two-factor authentication](./two-factor-authentication.md)
 -   [Text-mode browser](./text-mode-browser.md)
 -   [Build manager](./build-manager.md)
+-   [Refactoring engine](./refactoring-engine.md)
