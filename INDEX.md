@@ -3,6 +3,7 @@
 -   [Style checker](./style-checker.md)
 -   [Unit testing framework](./unit-testing-framework.md)
 -   [Static site generator](./static-site-generator.md)
+-   [Logging framework](./logging-framework.md)
 -   [Profiler](./profiler.md)
 -   [Relational database](./relational-database.md)
 -   [Document database](./document-database.md)
