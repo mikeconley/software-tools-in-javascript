@@ -14,3 +14,4 @@
 -   [Build manager](./build-manager.md)
 -   [Refactoring engine](./refactoring-engine.md)
 -   [Visualization](./visualization.md)
+-   [Library loader](./library-loader.md)
