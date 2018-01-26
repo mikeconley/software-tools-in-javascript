@@ -30,3 +30,11 @@ include links in that file to examples of the kind of tool being suggested.
 </table>
 
 *Images courtesy of [Robohash](http://robohash.org).*
+
+## Publication
+
+-   All content will be freely available under [CC-BY/MIT licenses](./LICENSE.md).
+-   We will publish a print edition through Lulu or a similar print-on-demand service
+    for those who like to fold down the corners of pages
+    (and so that we can get an ISBN).
+-   Non-core contributors will be listed on this page and thanked in the acknowledgments.
