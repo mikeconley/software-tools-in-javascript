@@ -9,3 +9,4 @@
 -   [Relational database](./relational-database.md)
 -   [Document database](./document-database.md)
 -   [Console text editor](./console-text-editor.md)
+-   [Dependency analyzer](./dependency-analyzer.md)
