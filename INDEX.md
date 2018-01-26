@@ -2,3 +2,4 @@
 
 -   [Style checker](./style-checker.md)
 -   [Static site generator](./static-site-generator.md)
+-   [Filename globbing](./filename-globbing.md)
