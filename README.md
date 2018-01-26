@@ -30,3 +30,17 @@ include links in that file to examples of the kind of tool being suggested.
 </table>
 
 *Images courtesy of [Robohash](http://robohash.org).*
+
+## Readers
+
+1.  Geriel, 26, started working as a graphic designer five years ago and has slowly picked up some JavaScript programming skills.
+    She wants to do more development,
+    but feels that her lack of formal education has left large gaps in her knowledge.
+    This book will teach her how the tools she uses work
+    so that she can use them more effectively.
+
+2.  Taban, 30, has been programming in Java and Python since finishing a BSc in Computer Science eight years ago.
+    She has recently started using JavaScript for back-end development,
+    and is spending an increasing amount of her time designing architectures rather than actually coding.
+    This book will teach her how to think about how to structure medium-sized software systems,
+    and show her some tools that her team should probably already be using.
