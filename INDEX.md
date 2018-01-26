@@ -10,3 +10,4 @@
 -   [Document database](./document-database.md)
 -   [Console text editor](./console-text-editor.md)
 -   [Two-factor authentication](./two-factor-authentication.md)
+-   [Text-mode browser](./text-mode-browser.md)
