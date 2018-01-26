@@ -1,4 +1,6 @@
 # Software Tools in JavaScript
 
--   [Style Checker](./style-checker.md)
+-   [Style checker](./style-checker.md)
 -   [Unit testing framework](./unit-testing-framework.md)
+-   [Static site generator](./static-site-generator.md)
+-   [Console text editor](./console-text-editor.md)
