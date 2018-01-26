@@ -1,8 +1,8 @@
 # software-tools-in-javascript
 
 This repository holds content for a book about a tool-based approach to designing and building software.
-All content is available under the open licenses described in [LICENSE.md],
-and our Code of Conduct is described in [CONDUCT.md].
+All content is available under the open licenses described in [LICENSE.md](./LICENSE.md),
+and our Code of Conduct is described in [CONDUCT.md](./CONDUCT.md).
 
 ## Content
 
