@@ -1,3 +1,4 @@
 # Software Tools in JavaScript
 
--   [Style Checker](./style-checker.md)
+-   [Style checker](./style-checker.md)
+-   [Static site generator](./static-site-generator.md)
