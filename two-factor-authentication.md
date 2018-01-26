@@ -1,6 +1,7 @@
 # Two-Factor Authentication
 
-Implement some kind of challenge/response two-factor authentication.
+Implement some kind of challenge/response two-factor authentication,
+e.g. using a [time-based one-time password algorithm](https://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm).
 
 This shows:
 
