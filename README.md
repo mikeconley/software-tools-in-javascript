@@ -18,6 +18,19 @@ include links in that file to examples of the kind of tool being suggested.
 
 ## Contributors
 
--   Mike Conley
--   Blake Winton
--   [Greg Wilson](http://third-bit.com)
+<table cellpadding="5">
+  <tr>
+    <td><img src="./img/mike.png" height="100" width="100" alt="Mike Conley"></td>
+    <td>Mike Conley</td>
+  </tr>
+  <tr>
+    <td><img src="./img/blake.png" height="100" width="100" alt="Blake Winton"></td>
+    <td>Blake Winton</td>
+  </tr>
+  <tr>
+    <td><img src="./img/greg.png" height="100" width="100" alt="Greg Wilson"></td>
+    <td><a href="http://third-bit.com">Greg Wilson</a></td>
+  </tr>
+</table>
+
+*Images courtesy of [Robohash](http://robohash.org).*
