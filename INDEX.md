@@ -9,3 +9,4 @@
 -   [Relational database](./relational-database.md)
 -   [Document database](./document-database.md)
 -   [Console text editor](./console-text-editor.md)
+-   [Server testing framework](./server-testing-framework.md)
