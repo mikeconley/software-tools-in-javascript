@@ -2,7 +2,7 @@
 
 Show how to create a relational (tabular) database that supports a small subset of SQL operations.
 
-1.  Tables stored as uniform JSON structures defined by schema.
+1.  Tables stored as uniform JSON structures defined by [JSON Schema](https://spacetelescope.github.io/understanding-json-schema/).
 2.  Queries built out of nested function calls.
 3.  No concurrency support (no transactions, no rollback).
 
