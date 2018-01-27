@@ -16,3 +16,7 @@
 -   [Refactoring engine](./refactoring-engine.md)
 -   [Visualization](./visualization.md)
 -   [Library loader](./library-loader.md)
+
+---
+
+-   [Glossary](./glossary.md)
