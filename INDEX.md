@@ -16,3 +16,4 @@
 -   [Refactoring engine](./refactoring-engine.md)
 -   [Visualization](./visualization.md)
 -   [Library loader](./library-loader.md)
+-   [Explain basic NPM usage](./explain-npm.md)
