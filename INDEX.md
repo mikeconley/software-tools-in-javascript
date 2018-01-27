@@ -13,6 +13,7 @@
 -   [Relational database](./relational-database.md)
 -   [Document database](./document-database.md)
 -   [Console text editor](./console-text-editor.md)
+-   [Dependency analyzer](./dependency-analyzer.md)
 -   [Two-factor authentication](./two-factor-authentication.md)
 -   [Text-mode browser](./text-mode-browser.md)
 -   [Build manager](./build-manager.md)
