@@ -17,7 +17,7 @@
   "contributors": [
     {"name": "Mike Conley", "email": "mike.d.conley@gmail.com", "url": ""},
     {"name": "Blake Winton", "email": "bwinton@latte.ca", "url": ""},
-    {"name": "Greg Wilson", "email": "gvwilson@third-bit.com", "url": "http://third-bit.com"},
+    {"name": "Greg Wilson", "email": "gvwilson@third-bit.com", "url": "http://third-bit.com"}
   ],
   "license": "MIT",
   "bugs": {
