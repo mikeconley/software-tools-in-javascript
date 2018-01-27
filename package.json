@@ -1,0 +1,23 @@
+{
+  "name": "software-tools-in-javascript",
+  "version": "0.0.1",
+  "description": "An introduction to tool-based software development in JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/software-tools-in-javascript/software-tools-in-javascript.git"
+  },
+  "keywords": [
+    "education",
+    "JavaScript"
+  ],
+  "author": "Mike Conley, Blake Winton, and Greg Wilson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/software-tools-in-javascript/software-tools-in-javascript/issues"
+  },
+  "homepage": "https://github.com/software-tools-in-javascript/software-tools-in-javascript"
+}
