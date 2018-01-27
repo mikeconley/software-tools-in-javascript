@@ -14,7 +14,11 @@
     "education",
     "JavaScript"
   ],
-  "author": "Mike Conley, Blake Winton, and Greg Wilson",
+  "contributors": [
+    {"name": "Mike Conley", "email": "mike.d.conley@gmail.com", "url": ""},
+    {"name": "Blake Winton", "email": "bwinton@latte.ca", "url": ""},
+    {"name": "Greg Wilson", "email": "gvwilson@third-bit.com", "url": "http://third-bit.com"},
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/software-tools-in-javascript/software-tools-in-javascript/issues"
