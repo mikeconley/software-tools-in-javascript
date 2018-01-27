@@ -16,3 +16,9 @@
 -   [Refactoring engine](./refactoring-engine.md)
 -   [Visualization](./visualization.md)
 -   [Library loader](./library-loader.md)
+
+---
+
+-   [License](./LICENSE.md)
+-   [Code of Conduct](./CONDUCT.md)
+-   [Acknowlegments](./acknowledgments.md)
