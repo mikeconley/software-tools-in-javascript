@@ -25,6 +25,8 @@
 -   [Server testing framework](./server-testing-framework.md)
 -   [Search engine](./search-engine.md)
 -   [Simple scripting language](./simple-scripting-language.md)
+-   [Image format converter](./image-format-converter.md)
+-   [Terminal / Shell](./shell.md)
 -   [License](./LICENSE.md)
 -   [Code of Conduct](./CONDUCT.md)
 -   [Acknowlegments](./acknowledgments.md)
