@@ -1,4 +1,4 @@
-# software-tools-in-javascript
+# Software Tools in JavaScript
 
 This repository holds content for a book about a tool-based approach to designing and building software.
 All content is available under the open licenses described in [LICENSE.md](./LICENSE.md),
