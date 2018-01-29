@@ -26,6 +26,8 @@
 -   [Search engine](./search-engine.md)
 -   [Simple scripting language](./simple-scripting-language.md)
 -   [REST data service](./rest-data-service.md)
+-   [Image format converter](./image-format-converter.md)
+-   [Terminal / Shell](./shell.md)
 -   [License](./LICENSE.md)
 -   [Code of Conduct](./CONDUCT.md)
 -   [Acknowlegments](./acknowledgments.md)
