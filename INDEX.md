@@ -23,11 +23,13 @@
 -   [Documentation generator](./documentation-generator.md)
 -   [Explain basic NPM usage](./explain-npm.md)
 -   [Server testing framework](./server-testing-framework.md)
+-   [Simple analytics](./analytics.md)
 -   [Search engine](./search-engine.md)
 -   [Simple scripting language](./simple-scripting-language.md)
 -   [REST data service](./rest-data-service.md)
 -   [Image format converter](./image-format-converter.md)
 -   [Terminal / Shell](./shell.md)
+-   [Wiki](./wiki.md)
 -   [Issue tracking system](./issue-tracking-system.md)
 
 ---
