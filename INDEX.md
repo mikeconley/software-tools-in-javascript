@@ -23,6 +23,8 @@
 -   [Documentation generator](./documentation-generator.md)
 -   [Explain basic NPM usage](./explain-npm.md)
 -   [Server testing framework](./server-testing-framework.md)
+-   [Search engine](./search-engine.md)
+-   [Simple scripting language](./simple-scripting-language.md)
 -   [License](./LICENSE.md)
 -   [Code of Conduct](./CONDUCT.md)
 -   [Acknowlegments](./acknowledgments.md)
