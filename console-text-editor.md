@@ -11,5 +11,4 @@ This shows:
 -   Undo/redo.
 
 This editor could then be a platform for other tools,
-such as the world's smallest IDE.
-
+such as the world's smallest IDE or an interactive syntax checker like [Flycheck](http://www.flycheck.org/).
