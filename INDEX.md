@@ -28,6 +28,7 @@
 -   [REST data service](./rest-data-service.md)
 -   [Image format converter](./image-format-converter.md)
 -   [Terminal / Shell](./shell.md)
+-   [Issue tracking system](./issue-tracking-system.md)
 
 ---
 
