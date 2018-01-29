@@ -30,6 +30,7 @@
 -   [Image format converter](./image-format-converter.md)
 -   [Terminal / Shell](./shell.md)
 -   [Wiki](./wiki.md)
+-   [Issue tracking system](./issue-tracking-system.md)
 
 ---
 
