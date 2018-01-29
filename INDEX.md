@@ -33,4 +33,5 @@
 -   [License](./LICENSE.md)
 -   [Code of Conduct](./CONDUCT.md)
 -   [Acknowlegments](./acknowledgments.md)
+-   [Glossary](./glossary.md)
 -   [References](./references.md)

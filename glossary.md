@@ -1,0 +1,21 @@
+# Glossary
+
+-   Abstract syntax tree (AST)
+-   Cache
+-   Catch (exception)
+-   Character encoding
+-   Class
+-   Component
+-   Destructuring assignment
+-   Exception
+-   Global variable
+-   Local variable
+-   Method
+-   Object
+-   Polymorphism
+-   Prototype
+-   Raise (exception)
+-   Template literal
+-   Unicode
+-   Variable interpolation
+-   Visitor pattern
