@@ -32,6 +32,8 @@
 -   [Terminal / Shell](./shell.md)
 -   [Wiki](./wiki.md)
 -   [Issue tracking system](./issue-tracking-system.md)
+-   [Internationalization](./internationalization.md)
+-   [Accessibility](./accessibility.md)
 
 ---
 
