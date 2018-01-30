@@ -27,6 +27,7 @@
 -   [Running experiments](./running-experiments.md)
 -   [Search engine](./search-engine.md)
 -   [Simple scripting language](./simple-scripting-language.md)
+-   [Chat client](./chat-client.md)
 -   [REST data service](./rest-data-service.md)
 -   [Image format converter](./image-format-converter.md)
 -   [Terminal / Shell](./shell.md)
