@@ -22,8 +22,7 @@ and our Code of Conduct is described in [CONDUCT.md](./CONDUCT.md).
     its file becomes `style-checker/index.md`.)
     At the same time,
     add `_**` and `**_` around the tool's link in `INDEX.md` to highlight the entry.
-
-3.  Keep all the source for the tool in its directory,
+    Keep all the source for the tool in its directory,
     including code, input files, tests, and so on.
 
 ## Contributors
