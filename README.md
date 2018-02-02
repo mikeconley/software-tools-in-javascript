@@ -1,5 +1,7 @@
 # Software Tools in JavaScript
 
+*How to rebuild a web-based software ecosystem after the apocalypse.*
+
 This repository holds content for a book about a tool-based approach to designing and building software.
 All content is available under the open licenses described in [LICENSE.md](./LICENSE.md),
 and our Code of Conduct is described in [CONDUCT.md](./CONDUCT.md).
