@@ -52,3 +52,46 @@ include links in that file to examples of the kind of tool being suggested.
     and is spending an increasing amount of her time designing architectures rather than actually coding.
     This book will teach her how to think about how to structure medium-sized software systems,
     and show her some tools that her team should probably already be using.
+
+Common elements:
+-   Understand:
+    -   Data types: numbers, character strings, arrays, key/value stores
+    -   Control flow: loops, conditionals, throw/catch, call stack
+    -   Objects: constructors, member variables, inheritance, polymorphism
+-   May have seen, but aren't sure how they work:
+    -   Callbacks
+    -   Closures
+    -   Promises
+    -   Observables
+-   Are comfortable using:
+    -   The Unix shell
+    -   Git and GitHub
+    -   Stack Overflow
+
+Questions: how do I…
+-   …make data available?
+-   …build a browser interface to interact with that data?
+-   …tell if that interface is working correctly?
+-   …deploy it?
+-   …manage its source code?
+-   …test it?
+-   …be more productive?
+
+Concepts: I understand that…
+-   …web pages are created by concatenating and interpolating text.
+-   …security depends on authentication, authorization, and access control.
+-   …source code can be manipulated just like any other kind of data.
+-   …records of programs' activity are also just another kind of data.
+-   …the best way to build software is to build tools that can easily be recombined.
+-   …models and views should be kept separate.
+
+Skills: I can…
+-   …build a syndicated data service.
+-   …display that data in web pages.
+-   …make those web pages interactive.
+-   …control who has access to what data.
+-   …deploy my application.
+-   …keep track of what my application is doing.
+-   …manage the source code for my application.
+-   …make sure that the application is working as it's supposed to.
+-   …automate routine tasks so that the computer can do them for me.
