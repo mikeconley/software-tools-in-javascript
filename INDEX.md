@@ -37,6 +37,7 @@
 -   [HTTP server](./http-server.md)
 -   [Internationalization](./internationalization.md)
 -   [Accessibility](./accessibility.md)
+-   [RSS reader](./rss-reader.md)
 
 ---
 
