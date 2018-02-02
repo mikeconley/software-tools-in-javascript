@@ -21,8 +21,8 @@
 -   [Logging framework](./logging-framework.md)
 -   [Dependency analyzer](./dependency-analyzer.md)
 -   [Build manager](./build-manager.md)
--   [Text-mode browser](./text-mode-browser.md)
--   [Layout engine](./layout-engine.md)
+-   **[Layout engine](./layout-engine/index.md)**
+-   **[Text-mode browser](./text-mode-browser/index.md)**
 -   [HTTP server](./http-server.md)
 -   [Internationalization](./internationalization.md)
 -   [Accessibility](./accessibility.md)
