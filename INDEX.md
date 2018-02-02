@@ -37,6 +37,7 @@
 -   [HTTP server](./http-server.md)
 -   [Internationalization](./internationalization.md)
 -   [Accessibility](./accessibility.md)
+-   [Diff and merge](./diff-merge.md)
 
 ---
 
