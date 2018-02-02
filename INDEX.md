@@ -11,6 +11,8 @@
 -   [Simple scripting language](./simple-scripting-language.md)
 -   [Relational database](./relational-database.md)
 -   [Document database](./document-database.md)
+-   [Version control system](./version-control-system.md)
+-   [Diff and merge](./diff-merge.md)
 -   [Console text editor](./console-text-editor.md)
 -   [Refactoring engine](./refactoring-engine.md)
 -   [Profiler](./profiler.md)
