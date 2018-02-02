@@ -8,13 +8,23 @@ and our Code of Conduct is described in [CONDUCT.md](./CONDUCT.md).
 
 ## Content
 
-To suggest a tool that should be covered,
-please put a one-paragraph description of the tool and the reason it's interesting
-in a file called `tool-name.md`
-(e.g., `style-checker.md`)
-and add a link to that file to the list in [INDEX.md](./INDEX.md).
-Where feasible,
-include links in that file to examples of the kind of tool being suggested.
+1.  To suggest a tool that should be covered,
+    please put a one-paragraph description of the tool and the reason it's interesting
+    in a file called `tool-name.md`
+    (e.g., `style-checker.md`)
+    and add a link to that file to the list in [INDEX.md](./INDEX.md).
+    Where feasible,
+    include links in that file to examples of the kind of tool being suggested.
+
+2.  Once work starts on a section,
+    create a sub-directory with the same slug and move its description into that directory's `index.md`.
+    (For example, when work starts on the style checker,
+    its file becomes `style-checker/index.md`.)
+    At the same time,
+    add `_**` and `**_` around the tool's link in `INDEX.md` to highlight the entry.
+
+3.  Keep all the source for the tool in its directory,
+    including code, input files, tests, and so on.
 
 ## Contributors
 
