@@ -1,6 +1,7 @@
 # Software Tools in JavaScript
 
 -   [Explain basic NPM usage](./explain-npm.md)
+-   [Copy files recurisvely](./copy-tree/index.md)
 -   [Find files](./find-files.md)
 -   [Filename globbing](./filename-globbing.md)
 -   [Image format converter](./image-format-converter.md)

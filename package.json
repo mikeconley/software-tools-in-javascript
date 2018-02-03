@@ -16,13 +16,29 @@
   ],
   "author": "The Software Tools Tendency",
   "contributors": [
-    {"name": "Mike Conley", "email": "mike.d.conley@gmail.com", "url": "https://www.mikeconley.ca"},
-    {"name": "Blake Winton", "email": "bwinton@latte.ca", "url": "https://bwinton.latte.ca"},
-    {"name": "Greg Wilson", "email": "gvwilson@third-bit.com", "url": "http://third-bit.com"}
+    {
+      "name": "Mike Conley",
+      "email": "mike.d.conley@gmail.com",
+      "url": "https://www.mikeconley.ca"
+    },
+    {
+      "name": "Blake Winton",
+      "email": "bwinton@latte.ca",
+      "url": "https://bwinton.latte.ca"
+    },
+    {
+      "name": "Greg Wilson",
+      "email": "gvwilson@third-bit.com",
+      "url": "http://third-bit.com"
+    }
   ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/software-tools-in-javascript/software-tools-in-javascript/issues"
   },
-  "homepage": "https://github.com/software-tools-in-javascript/software-tools-in-javascript"
+  "homepage": "https://github.com/software-tools-in-javascript/software-tools-in-javascript",
+  "dependencies": {
+    "fs-extra": "^5.0.0",
+    "glob": "^7.1.2"
+  }
 }
