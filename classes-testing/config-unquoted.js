@@ -6,5 +6,5 @@ const config = {
 }
 
 for (const key of ['author', 'version']) {
-    console.log(key, config[key])
+  console.log(key, config[key])
 }

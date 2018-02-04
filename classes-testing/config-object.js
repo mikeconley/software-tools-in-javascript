@@ -10,5 +10,5 @@ console.log(config['description'])
 console.log(config.name)
 
 for (const key of ['author', 'version']) {
-    console.log(key, config[key])
+  console.log(key, config[key])
 }

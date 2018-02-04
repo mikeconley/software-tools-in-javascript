@@ -10,6 +10,8 @@ This shows:
 
 ---
 
+- FIXME: need to have introduced exceptions before here
+
 - An **object** is a collection of key/value pairs
   - Keys do not have to be strings, but almost always are
   - Values can be anything
@@ -122,10 +124,10 @@ const sign = (value) => {
 - Write some tests
 
 ```js {title=test-list.js}
-const testNegative = () => ok(sign(-3) == -1, 'Sign of negative')
-const testZero =     () => ok(sign(0) == 0, 'Sign of zero')
-const testPositive = () => ok(sign(19) == 1, 'Sign of positive')
-const testError =    () => ok(sgn(1) == 1, 'Mis-spelled sign')
+const testNegative = () => ok(sign(-3) === -1, 'Sign of negative')
+const testZero = () => ok(sign(0) === 0, 'Sign of zero')
+const testPositive = () => ok(sign(19) === 1, 'Sign of positive')
+const testError = () => ok(sgn(1) === 1, 'Mis-spelled sign')
 ```
 
 - The last one is as important as the first three
@@ -138,9 +140,9 @@ const testError =    () => ok(sgn(1) == 1, 'Mis-spelled sign')
 
 ```js {title=test-list.js}
 const counts = {
-  pass  : 0,
-  fail  : 0,
-  error : 0
+  pass: 0,
+  fail: 0,
+  error: 0
 }
 ```
 
@@ -190,19 +192,19 @@ test results { pass: 2, fail: 1, error: 1 }
 
 ```js {title=test-callback.js}
 const allHope = {
-  tests : [],
-  pass  : [],
-  fail  : [],
-  error : []
+  tests: [],
+  pass: [],
+  fail: [],
+  error: []
 }
 const hope = (comment, callback) => {
   allHope.tests.push([comment, callback])
 }
 
-hope('Sign of negative is -1', () => ok(sign(-3) == -1))
-hope('Sign of zero is 0', () => ok(sign(0) == 0))
-hope('Sign of positive is 1', () => ok(sign(19) == 1))
-hope('Sign misspelled is error', () => ok(sgn(1) == 1))
+hope('Sign of negative is -1', () => ok(sign(-3) === -1))
+hope('Sign of zero is 0', () => ok(sign(0) === 0))
+hope('Sign of positive is 1', () => ok(sign(19) === 1))
+hope('Sign misspelled is error', () => ok(sgn(1) === 1))
 ```
 
 - A single data structure to record everything
@@ -389,13 +391,12 @@ const sign = (value) => {
   } else {
     return 1
   }
-  return result
 }
 
-hope.test('Sign of negative is -1', () => ok(sign(-3) == -1))
-hope.test('Sign of zero is 0', () => ok(sign(0) == 0))
-hope.test('Sign of positive is 1', () => ok(sign(19) == 1))
-hope.test('Sign misspelled is error', () => ok(sgn(1) == 1))
+hope.test('Sign of negative is -1', () => ok(sign(-3) === -1))
+hope.test('Sign of zero is 0', () => ok(sign(0) === 0))
+hope.test('Sign of positive is 1', () => ok(sign(19) === 1))
+hope.test('Sign misspelled is error', () => ok(sgn(1) === 1))
 
 hope.run()
 ```
@@ -446,4 +447,187 @@ fail:
   Sign of zero is 0
 error:
   Sign misspelled is error
+```
+
+- We can run a single file full of tests with `node filename`
+- Useful to have a command-line tool to find and run all of our tests
+  1. Rely on a naming convention to identify files with tests.
+  2. Use `glob` to find them (we know how to do this).
+  3. `require` them dynamically (and hope that they `hope` correctly)
+  4. Then run all tests and report.
+
+- Naming convention: `test-*.js`
+  - Search below current directory if nothing else specified
+  - Or below a named directory if a name is given
+- Also want to control terse vs. verbose output
+- Use the `minimist` library to parse command-line arguments
+  - Name is definitely not obvious, but it's the top hit for a search
+
+```js {title=parse-args.js}
+const minimist = require('minimist')
+
+const DEFAULTS = {
+  root: '.',
+  output: 'terse'
+}
+
+const hopeful = (args) => {
+  const options = parse(args)
+  console.log(options)
+}
+
+const parse = (args) => {
+  const options = Object.assign({}, DEFAULTS)
+  argv = minimist(args)
+  for (const key in argv) {
+    switch (key) {
+    case 'd' :
+      options.root = argv[key]
+      break
+    case 'v' :
+      options.output = 'verbose'
+      break
+    case '_' :
+      break
+    default :
+      console.error(`unrecognized option ${key}`)
+      break
+    }
+  }
+  return options
+}
+
+hopeful(process.argv.slice(2))
+```
+
+- Note use of `Object.assign` to copy an object
+  - Often use `Object.assign({}, firstSet, secondSet)` as well
+- And the `switch` statement
+  - Its fall-through behavior is one of the curly brace family's biggest mistakes
+  - *Always* use `break`
+  - *Always* use explicit `default`
+- Really should do something better than just report the unrecognized option and carry on…
+
+- Dynamic loading
+  - Try the simplest thing that could possibly work
+
+```js {title=dynamic-require.js}
+const path = process.argv[2]
+const contents = require(path)
+console.log(contents)
+```
+
+- First test case:
+
+```js {title=without-export.js}
+const hello = () => {
+  console.log('hello')
+}
+```
+```input
+$ node dynamic-require.js ./without-export.js
+```
+```output
+{}
+```
+
+- Have to assign to `module.exports`
+  - Code is evaluated as it's loaded even without this
+
+
+```js {title=with-export.js}
+const hello = () => {
+  console.log('hello')
+}
+
+module.exports = hello
+```
+```input
+$ node dynamic-require.js ./without-export.js
+```
+```output
+[Function: hello]
+```
+
+- Put the pieces together
+
+```js {title=hopeful.js}
+…imports…
+
+const DEFAULTS = {
+    …defaults…
+}
+
+const hopeful = (args) => {
+  const options = parse(args)
+  glob.sync(`${options.root}/**/test-*.js`).forEach(f => {
+    require(f)
+  })
+  hope.run()
+  let result
+  if (options.output == 'terse') {
+    result = hope.terse()
+  } else if (options.output == 'verbose') {
+    result = hope.verbose()
+  } else {
+    result = `Unrecognized output option ${options.output}`
+  }
+  console.log(result)
+}
+
+const parse = (args) => {
+  …parse command-line arguments as before…
+}
+
+hopeful(process.argv.slice(2))
+```
+
+- Create a couple of files with tests
+- Run
+- It works
+  - But we should probably add filenames to the test log
+  - For the same reason that we modularize anything else
+- Node has a `caller` module
+  - `caller()` returns the name of the file containing the caller
+  - Combining that with the string is a decent start
+- Modify `hope`
+
+```js {title=hope-caller.js}
+const { AssertionError } = require('assert')
+const caller = require('caller')
+
+class Hope {
+  …constructor…
+
+  test (comment, callback) {
+    const c = caller()
+    this.tests.push([`${c}::${comment}`, callback])
+  }
+
+  …other methods stay the same…
+}
+
+module.exports = new Hope()
+```
+
+- Call it `hope-caller.js`
+- Modify `hopeful.js` to create `hopeful-caller.j` that requires it
+- Run it
+
+```output
+pass: 0 fail: 0 error: 0
+```
+
+- Because the `test-*.js` scripts are still loading `hope`, not `hope-caller`
+  - Loading a library with a fixed name is just like using a magic number in code
+  - Look at ways to fix this [later](FIXME-inversion)
+
+- Once that's fixed, everything works
+
+```output
+pass:
+  /stj/src/test-add-caller.js::Sum of 1 and 2
+  /stj/src/test-sub-caller.js::Difference of 1 and 2
+fail:
+error:
 ```

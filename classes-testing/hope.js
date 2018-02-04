@@ -1,4 +1,4 @@
-const { ok, AssertionError } = require('assert')
+const { AssertionError } = require('assert')
 
 class Hope {
   constructor () {
@@ -45,22 +45,4 @@ class Hope {
   }
 }
 
-const hope = new Hope()
-
-const sign = (value) => {
-  if (value < 0) {
-    return -1
-  } else {
-    return 1
-  }
-}
-
-hope.test('Sign of negative is -1', () => ok(sign(-3) === -1))
-hope.test('Sign of zero is 0', () => ok(sign(0) === 0))
-hope.test('Sign of positive is 1', () => ok(sign(19) === 1))
-hope.test('Sign misspelled is error', () => ok(sgn(1) === 1))
-
-hope.run()
-
-console.log(`terse results: ${hope.terse()}`)
-console.log(`verbose results:\n${hope.verbose()}`)
+module.exports = new Hope()

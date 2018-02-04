@@ -11,5 +11,5 @@ const config = {
 }
 
 for (const key in config) {
-    console.log(key, config[key])
+  console.log(key, config[key])
 }
