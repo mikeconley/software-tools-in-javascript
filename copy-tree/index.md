@@ -50,8 +50,7 @@ const fs = require('fs')
 const listContents = (err, files) => {
   if (err) {
     console.error(err)
-  }
-  else {
+  } else {
     for (const name of files) {
       console.log(name)
     }
@@ -59,7 +58,7 @@ const listContents = (err, files) => {
 }
 
 const srcDir = process.argv[2]
-const results = fs.readdir(srcDir, listContents)
+fs.readdir(srcDir, listContents)
 ```
 
 - Node callbacks always get an error (if any) as their first argument
@@ -82,11 +81,10 @@ list-dir-wrong.js
 const fs = require('fs')
 
 const srcDir = process.argv[2]
-const results = fs.readdir(srcDir, (err, files) => {
+fs.readdir(srcDir, (err, files) => {
   if (err) {
     console.error(err)
-  }
-  else {
+  } else {
     for (const name of files) {
       console.log(name)
     }
@@ -139,7 +137,7 @@ glob('**/*.*', (err, files) => {
   if (err) {
     console.log(err)
   } else {
-    files = files.filter((f) => {return !f.endsWith('~')})
+    files = files.filter((f) => { return !f.endsWith('~') })
     for (const filename of files) {
       console.log(filename)
     }
