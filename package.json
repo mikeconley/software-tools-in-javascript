@@ -4,6 +4,7 @@
   "description": "An introduction to tool-based software development in JavaScript.",
   "main": "index.js",
   "scripts": {
+    "standard": "standard",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
