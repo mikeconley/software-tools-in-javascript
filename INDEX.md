@@ -1,5 +1,6 @@
 # Software Tools in JavaScript
 
+-   _**[Promises](./promises/index.md)**_
 -   [Explain basic NPM usage](./explain-npm.md)
 -   [Find files](./find-files.md)
 -   [Filename globbing](./filename-globbing.md)

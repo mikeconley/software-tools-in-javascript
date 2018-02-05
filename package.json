@@ -39,6 +39,8 @@
   },
   "homepage": "https://github.com/software-tools-in-javascript/software-tools-in-javascript",
   "dependencies": {
+    "fs-extra-promise": "^1.0.1",
+    "glob-promise": "^3.3.0",
     "standard": "^10.0.3"
   }
 }
