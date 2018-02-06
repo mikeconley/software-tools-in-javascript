@@ -1,5 +1,6 @@
 # Software Tools in JavaScript
 
+-   _**[Class-based testing](./classes-testing/index.md)**_
 -   _**[Promises](./promises/index.md)**_
 -   [Explain basic NPM usage](./explain-npm.md)
 -   [Find files](./find-files.md)
