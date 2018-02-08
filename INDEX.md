@@ -3,6 +3,7 @@
 -   _**[Class-based testing](./classes-testing/index.md)**_
 -   _**[Promises](./promises/index.md)**_
 -   [Explain basic NPM usage](./explain-npm.md)
+-   [Copy files recurisvely](./copy-tree/index.md)
 -   [Find files](./find-files.md)
 -   [Filename globbing](./filename-globbing.md)
 -   [Image format converter](./image-format-converter.md)
