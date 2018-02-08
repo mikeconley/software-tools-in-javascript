@@ -10,20 +10,20 @@ class Hope {
   }
 
   test (comment, callback) {
-    const c = caller()
-    this.tests.push([`${c}::${comment}`, callback])
+    const calledBy = caller()
+    this.tests.push({calledBy, comment, callback})
   }
 
   run () {
-    this.tests.forEach(([comment, test]) => {
+    this.tests.forEach(({calledBy, comment, callback}) => {
       try {
-        test()
-        this.pass.push(comment)
+        callback()
+        this.pass.push({calledBy, comment})
       } catch (e) {
         if (e instanceof AssertionError) {
-          this.fail.push(comment)
+          this.fail.push({calledBy, comment})
         } else {
-          this.error.push(comment)
+          this.error.push({calledBy, comment})
         }
       }
     })
@@ -40,7 +40,7 @@ class Hope {
       report += `${prefix}${title}:`
       prefix = '\n'
       for (const r of results) {
-        report += `${prefix}  ${r}`
+        report += `${prefix}  ${r.calledBy} :: ${r.comment}`
       }
     }
     return report
