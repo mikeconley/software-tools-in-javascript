@@ -1,6 +1,6 @@
 const minimist = require('minimist')
 const glob = require('glob')
-const hope = require('./hope-caller')
+const hope = require('./hope')
 
 const DEFAULTS = {
   root: '.',
