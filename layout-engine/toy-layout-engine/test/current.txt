@@ -1,0 +1,45 @@
+
+> toy-layout-engine@1.0.0 run /mnt/c/Users/bwinton/Programming/software-tools-in-javascript/layout-engine/toy-layout-engine
+> node index.js
+
+STRONG is unimplemented
+CODE is unimplemented
+BLOCKQUOTE is unimplemented
+PRE is unimplemented
+A is unimplemented
+                                                                    Smoketest 1
+                                This is header 1
+
+This is header 2
+
+  This is header 3
+
+    This is header 4
+
+      This is header 5
+
+        This is header 6
+
+   This is a paragraph
+     * 
+     * This is an unsorted list element     * 
+     * This is another unsorted list element     * 
+     * This is a final unsorted list element     * 
+    1. 
+    1. This is a sorted list element    1. 
+    1. This is another sorted list element    1. 
+    1. This is a final sorted list element    1. 
+
+   This is a paragraph with   strong   text and
+   What do you know, a line break right here and
+   Wow, there's another one.
+   And here's some   code();   !"The world always seems brighter when you've just made something that wasn't there before."This is some
+      preformatted
+      text
+       and we need
+   to make sure
+ that it's formatted
+properly!     ! 
+     !And lo, and behold, the ever-importantLink!
+
+   
