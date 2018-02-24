@@ -107,7 +107,6 @@ let ToyLayoutEngine = {
   handleH1(context, node, displayList) {
     // Remove the previous whitespace, because we're a block element.
     let spaces = (this.config.cols - node.textContent.length) / 2;
-    //this.pushStackingContext(node, ' '.repeat(spaces), true);
     displayList.push('\n');
 
     return context;
@@ -120,28 +119,24 @@ let ToyLayoutEngine = {
   },
   handleH3(context, node, displayList) {
     // Remove the previous text, because we're a block element.
-    //this.pushStackingContext(node, '  ', true);
     displayList.push('\n\n');
 
     return context;
   },
   handleH4(context, node, displayList) {
     // Remove the previous text, because we're a block element.
-    //this.pushStackingContext(node, '    ', true);
     displayList.push('\n\n');
 
     return context;
   },
   handleH5(context, node, displayList) {
     // Remove the previous text, because we're a block element.
-    //this.pushStackingContext(node, '      ', true);
     displayList.push('\n\n');
 
     return context;
   },
   handleH6(context, node, displayList) {
     // Remove the previous text, because we're a block element.
-    //this.pushStackingContext(node, '        ', true);
     displayList.push('\n\n');
 
     return context;
@@ -171,7 +166,6 @@ let ToyLayoutEngine = {
   },
   handleOl(context, node, displayList) {
     displayList.push('\n');
-    //this.pushStackingContext(node, '    1. ', true);
 
     return context;
   },
