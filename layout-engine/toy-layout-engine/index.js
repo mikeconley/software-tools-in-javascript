@@ -1,180 +1,326 @@
 // Libraries
+const assert = require('assert');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
-// Public interface
-let ToyLayoutEngine = {
-  pushStackingContext(node, prefix, skipWhitespace) {
-    this.stackingContext.push({node: node.lastChild, prefix, skipWhitespace});
-  },
-  currentStackingContext() {
-    return this.stackingContext[this.stackingContext.length - 1];
-  },
-  updateStackingContext(node) {
-    if (node.nodeName != '#text') {
-      this.currentStackingContext().skipWhitespace = false;
+const CONTEXT_TYPE_BLOCK = 1;
+const CONTEXT_TYPE_INLINE = 2;
+
+const UNORDERED_LIST = 1;
+const UNORDERED_LIST_BULLETS = ['*', '+', 'o', '#', '@', '-', '='];
+const ORDERED_LIST = 2;
+
+
+function ElementContext(lastContext, el, type, indent, extra = {}) {
+  this.lastContext = lastContext;
+  this.el = el;
+  this.type = type;
+
+  if (this.type == CONTEXT_TYPE_BLOCK) {
+    this.indent = indent;
+    if (lastContext) {
+      this.indent += lastContext.indent;
     }
-    if (this.currentStackingContext().node == node) {
-      this.stackingContext.pop();
-      this.currentStackingContext().skipWhitespace = true;
+  } else if (this.type == CONTEXT_TYPE_INLINE) {
+    this.indent = 1;
+  }
+
+  this.extra = extra;
+  this.extra.listDepth = 0;
+
+  if (this.extra.listType) {
+    this.extra.listDepth = lastContext.extra.listDepth + 1;
+  } else if (lastContext) {
+    this.extra.listDepth = lastContext.extra.listDepth;
+  }
+
+  this.ignoreWhitespace = true;
+}
+
+ElementContext.prototype = {
+  isLastChild(node) {
+    if (this.el) {
+      return node === this.el.lastChild;
     }
+    return false;
   },
 
-  handleHead(node, displayList) {
-    // Nothing we need to do here.
+  get isListItem() {
+    return this.el && this.el.tagName == "LI";
   },
-  handleTitle(node, displayList) {
+
+  findContextWithBullet() {
+    let context = this;
+    while (context) {
+      if (context.extra.listBullet !== undefined) {
+        return context;
+      }
+      context = context.lastContext;
+    }
+
+    return null;
+  },
+
+  get hasBullet() {
+    let context = this.findContextWithBullet();
+    return context && !context.extra.usedBullet;
+  },
+
+  get hadBullet() {
+    let context = this.findContextWithBullet();
+    return context && context.extra.usedBullet;
+  },
+
+  get bulletLength() {
+    let context = this.findContextWithBullet();
+    if (!context) {
+      return 0;
+    }
+    return context.extra.listBullet.length;
+  },
+
+  takeBullet() {
+    let context = this.findContextWithBullet();
+    assert(context,
+      "takeBullet should only be called if we have a bullet");
+    let bullet = context.extra.listBullet;
+    context.extra.usedBullet = true;
+    return { bullet, indent: context.indent };
+  }
+};
+
+// Public interface
+let ToyLayoutEngine = {
+  handleHead(context, node, displayList) {
+    // Nothing we need to do here.
+    return context;
+  },
+  handleTitle(context, node, displayList) {
     // Remove the previous text, because we're a block element.
     let spaces = this.config.cols - node.textContent.length - 1;
-    this.pushStackingContext(node, ' '.repeat(spaces), true);
+    return new ElementContext(context, node, CONTEXT_TYPE_BLOCK, spaces);
   },
-  handleBody(node, displayList) {
+  handleBody(context, node, displayList) {
     // Nothing we need to do here.
+    return context;
   },
-  handleH1(node, displayList) {
+  handleH1(context, node, displayList) {
     // Remove the previous whitespace, because we're a block element.
     let spaces = (this.config.cols - node.textContent.length) / 2;
-    this.pushStackingContext(node, ' '.repeat(spaces), true);
+    //this.pushStackingContext(node, ' '.repeat(spaces), true);
     displayList.push('\n');
+
+    return context;
   },
-  handleH2(node, displayList) {
+  handleH2(context, node, displayList) {
     // Remove the previous text, because we're a block element.
     displayList.push('\n\n');
+
+    return context;
   },
-  handleH3(node, displayList) {
+  handleH3(context, node, displayList) {
     // Remove the previous text, because we're a block element.
-    this.pushStackingContext(node, '  ', true);
+    //this.pushStackingContext(node, '  ', true);
     displayList.push('\n\n');
+
+    return context;
   },
-  handleH4(node, displayList) {
+  handleH4(context, node, displayList) {
     // Remove the previous text, because we're a block element.
-    this.pushStackingContext(node, '    ', true);
+    //this.pushStackingContext(node, '    ', true);
     displayList.push('\n\n');
+
+    return context;
   },
-  handleH5(node, displayList) {
+  handleH5(context, node, displayList) {
     // Remove the previous text, because we're a block element.
-    this.pushStackingContext(node, '      ', true);
+    //this.pushStackingContext(node, '      ', true);
     displayList.push('\n\n');
+
+    return context;
   },
-  handleH6(node, displayList) {
+  handleH6(context, node, displayList) {
     // Remove the previous text, because we're a block element.
-    this.pushStackingContext(node, '        ', true);
+    //this.pushStackingContext(node, '        ', true);
     displayList.push('\n\n');
+
+    return context;
   },
-  handleP(node, displayList) {
-    this.pushStackingContext(node, '   ', true);
-    displayList.push('\n\n');
-  },
-  handleUl(node, displayList) {
-    displayList.push('\n');
-    this.pushStackingContext(node, '     * ', true);
-  },
-  handleOl(node, displayList) {
-    displayList.push('\n');
-    this.pushStackingContext(node, '    1. ', true);
-  },
-  handleLi(node, displayList) {
-    displayList.push('\n');
-  },
-  handleStrong(node, displayList) {
-    console.log("STRONG is unimplemented");
-  },
-  handleBr(node, displayList) {
-    displayList.push('\n');
-  },
-  handleCode(node, displayList) {
-    console.log("CODE is unimplemented");
-  },
-  handleBlockquote(node, displayList) {
-    console.log("BLOCKQUOTE is unimplemented");
-  },
-  handlePre(node, displayList) {
-    console.log("PRE is unimplemented");
-  },
-  handleA(node, displayList) {
-    console.log("A is unimplemented");
-  },
-  handleText(node, displayList) {
-    if (this.currentStackingContext().skipWhitespace && node.textContent.trim() == "") {
-      return;
+  handleP(context, node, displayList) {
+    // display: block - but if we're inside a list, we don't need
+    // to space ourselves out.
+    if (!context.isListItem) {
+      displayList.push('\n\n');
     }
-    displayList.push(this.currentStackingContext().prefix + node.textContent.trim());
+
+    return new ElementContext(context, node, CONTEXT_TYPE_BLOCK, 0);
+  },
+  handleUl(context, node, displayList) {
+    // UL is display: block, so break onto a new line.
+    let indentSize = 5;
+    if (context.hasBullet) {
+      let { bullet, indent } = context.takeBullet();
+      let indentation = ' '.repeat(indent);
+      let prefix = bullet;
+      displayList.push(indentation + prefix);
+    }
+
+    return new ElementContext(context, node, CONTEXT_TYPE_BLOCK, indentSize, {
+      listType: UNORDERED_LIST,
+    });
+  },
+  handleOl(context, node, displayList) {
+    displayList.push('\n');
+    //this.pushStackingContext(node, '    1. ', true);
+
+    return context;
+  },
+  handleLi(context, node, displayList) {
+    // LI is display: block
+    displayList.push('\n');
+    assert(context.extra.listType, "Should be inside a list.");
+
+    let bullet;
+
+    if (context.extra.listType === UNORDERED_LIST) {
+      let index = (context.extra.listDepth - 1) % UNORDERED_LIST_BULLETS.length;
+      bullet = UNORDERED_LIST_BULLETS[index];
+    } else {
+      // TODO
+      //bullet = `${itemNum}.`
+    }
+    assert(bullet, "Should have selected a bullet.");
+
+    return new ElementContext(context, node, CONTEXT_TYPE_BLOCK, 0, {
+      listBullet: bullet,
+    });
+  },
+  handleStrong(context, node, displayList) {
+    return new ElementContext(context, node, CONTEXT_TYPE_INLINE);
+  },
+  handleBr(context, node, displayList) {
+    displayList.push('\n');
+
+    return context;
+  },
+  handleCode(context, node, displayList) {
+    console.log("CODE is unimplemented");
+
+    return context;
+  },
+  handleBlockquote(context, node, displayList) {
+    console.log("BLOCKQUOTE is unimplemented");
+
+    return context;
+  },
+  handlePre(context, node, displayList) {
+    console.log("PRE is unimplemented");
+
+    return context;
+  },
+  handleA(context, node, displayList) {
+    console.log("A is unimplemented");
+
+    return context;
+  },
+  handleText(context, node, displayList) {
+    if (context.ignoreWhitespace && node.textContent.trim() == "") {
+      return context;
+    }
+
+    let indentation = '';
+    let prefix = '';
+    if (context.hasBullet) {
+      let { bullet, indent } = context.takeBullet();
+      indentation = ' '.repeat(indent);
+      prefix = bullet + ' ';
+    } else if (context.hadBullet) {
+      indentation = ' '.repeat(context.indent + context.bulletLength + 1);
+    } else {
+      indentation  = ' '.repeat(context.indent);
+    }
+
+    displayList.push(indentation + prefix + node.textContent.trim());
+    return context;
   },
 
   layout(HTMLString, config) {
     this.config = config;
-    this.stackingContext = [{node: null, prefix: '', skipWhitespace: true}];
+    let context = new ElementContext(null, null, CONTEXT_TYPE_BLOCK, 0);
     const document = new JSDOM(HTMLString).window.document;
     let displayList = [];
     let walker = document.createTreeWalker(document.documentElement, -1, null, false)
+
     while (walker.nextNode()){
-      //Do something with the current node
       switch (walker.currentNode.nodeName) {
         case 'HEAD':
-          this.handleHead(walker.currentNode, displayList);
+          context = this.handleHead(context, walker.currentNode, displayList);
           break;
         case 'TITLE':
-          this.handleTitle(walker.currentNode, displayList);
+          context = this.handleTitle(context, walker.currentNode, displayList);
           break;
         case 'BODY':
-          this.handleBody(walker.currentNode, displayList);
+          context = this.handleBody(context, walker.currentNode, displayList);
           break;
         case 'H1':
-          this.handleH1(walker.currentNode, displayList);
+          context = this.handleH1(context, walker.currentNode, displayList);
           break;
         case 'H2':
-          this.handleH2(walker.currentNode, displayList);
+          context = this.handleH2(context, walker.currentNode, displayList);
           break;
         case 'H3':
-          this.handleH3(walker.currentNode, displayList);
+          context = this.handleH3(context, walker.currentNode, displayList);
           break;
         case 'H4':
-          this.handleH4(walker.currentNode, displayList);
+          context = this.handleH4(context, walker.currentNode, displayList);
           break;
         case 'H5':
-          this.handleH5(walker.currentNode, displayList);
+          context = this.handleH5(context, walker.currentNode, displayList);
           break;
         case 'H6':
-          this.handleH6(walker.currentNode, displayList);
+          context = this.handleH6(context, walker.currentNode, displayList);
           break;
         case 'P':
-          this.handleP(walker.currentNode, displayList);
+          context = this.handleP(context, walker.currentNode, displayList);
           break;
         case 'UL':
-          this.handleUl(walker.currentNode, displayList);
+          context = this.handleUl(context, walker.currentNode, displayList);
           break;
         case 'OL':
-          this.handleOl(walker.currentNode, displayList);
+          context = this.handleOl(context, walker.currentNode, displayList);
           break;
         case 'LI':
-          this.handleLi(walker.currentNode, displayList);
+          context = this.handleLi(context, walker.currentNode, displayList);
           break;
         case 'STRONG':
-          this.handleStrong(walker.currentNode, displayList);
+          context = this.handleStrong(context, walker.currentNode, displayList);
           break;
         case 'BR':
-          this.handleBr(walker.currentNode, displayList);
+          context = this.handleBr(context, walker.currentNode, displayList);
           break;
         case 'CODE':
-          this.handleCode(walker.currentNode, displayList);
+          context = this.handleCode(context, walker.currentNode, displayList);
           break;
         case 'BLOCKQUOTE':
-          this.handleBlockquote(walker.currentNode, displayList);
+          context = this.handleBlockquote(context, walker.currentNode, displayList);
           break;
         case 'PRE':
-          this.handlePre(walker.currentNode, displayList);
+          context = this.handlePre(context, walker.currentNode, displayList);
           break;
         case 'A':
-          this.handleA(walker.currentNode, displayList);
+          context = this.handleA(context, walker.currentNode, displayList);
           break;
         case '#text':
-          this.handleText(walker.currentNode, displayList);
+          context = this.handleText(context, walker.currentNode, displayList);
           break;
         default:
           console.log(`${walker.currentNode.nodeName} is unimplemented.`);
           break;
       }
-      this.updateStackingContext(walker.currentNode);
+
+      if (context.isLastChild(walker.currentNode)) {
+        context = context.lastContext;
+      }
     }
     let output = displayList.join('');
 
@@ -184,8 +330,11 @@ let ToyLayoutEngine = {
 
 module.exports = ToyLayoutEngine;
 
-const fs = require("fs");
-console.log(ToyLayoutEngine.layout(fs.readFileSync('test/smoketest.html', "utf-8"), {
-  cols: 80,
-  lines: 50,
-}));
+let args = process.argv.slice(2);
+if (args[0]) {
+  const fs = require("fs");
+  console.log(ToyLayoutEngine.layout(fs.readFileSync(args[0], "utf-8"), {
+    cols: 80,
+    lines: 50,
+  }));
+}
