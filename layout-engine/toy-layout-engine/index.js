@@ -165,9 +165,25 @@ let ToyLayoutEngine = {
     });
   },
   handleOl(context, node, displayList) {
-    displayList.push('\n');
+    // UL is display: block, so break onto a new line.
+    let indentSize = 4;
 
-    return context;
+    // For some reason, lynx chooses to indent OL's differently
+    // when they're nested.
+    if (context.extra.listDepth > 0) {
+      indentSize = 5;
+    }
+
+    if (context.hasBullet) {
+      let { bullet, indent } = context.takeBullet();
+      let indentation = ' '.repeat(indent);
+      let prefix = bullet;
+      displayList.push(indentation + prefix);
+    }
+
+    return new ElementContext(context, node, CONTEXT_TYPE_BLOCK, indentSize, {
+      listType: ORDERED_LIST,
+    });
   },
   handleLi(context, node, displayList) {
     // LI is display: block
@@ -180,8 +196,11 @@ let ToyLayoutEngine = {
       let index = (context.extra.listDepth - 1) % UNORDERED_LIST_BULLETS.length;
       bullet = UNORDERED_LIST_BULLETS[index];
     } else {
-      // TODO
-      //bullet = `${itemNum}.`
+      // We need to figure out which LI we are to generate the
+      // right bullet.
+      let parent = node.parentNode;
+      let index = Array.from(parent.children).indexOf(node) + 1;
+      bullet = `${index}.`
     }
     assert(bullet, "Should have selected a bullet.");
 
